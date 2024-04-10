@@ -1,0 +1,69 @@
+.edit-employee {
+  max-width: 400px;
+  margin: auto;
+  padding: 20px;
+  border: 2px solid #007bff;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="date"],
+input[type="email"],
+select {
+  width: 100%;
+  padding: 8px;
+  border: 1.5px solid #007bff;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+select[multiple] {
+  height: 100px;
+  /* Adjust height as needed */
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+span {
+  color: red;
+  font-size: x-small;
+}
+
+#boxes {
+  border: 1px solid #007bff;
+  border-radius: 3%;
+  width: 38%;
+  padding: 3%;
+  margin: 2%;
+
+}
+
+#ExistRole {
+  display: flex;
+  padding: 5%;
+  flex-wrap: wrap
+}
+swal2-checkbox{
+  width: 80%;
+}

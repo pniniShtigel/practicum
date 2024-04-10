@@ -1,0 +1,65 @@
+<div class="edit-employee">
+  <h2>Add Employee</h2>
+  <div class="form-group">
+    <label for="firstName">First Name:</label>
+    <input type="text" class="form-control" id="firstName" [(ngModel)]="newEmployee.firstName" name="firstName" required
+      aria-describedby="firstNameError">
+    <span id="firstNameError" class="error" *ngIf="!newEmployee.firstName">This field is required</span>
+  </div>
+  <div class="form-group">
+    <label for="lastName">Last Name:</label>
+    <input type="text" class="form-control" id="lastName" [(ngModel)]="newEmployee.lastName" name="lastName" required
+      aria-describedby="lastNameError">
+    <span id="lastNameError" class="error" *ngIf="!newEmployee.lastName">This field is required</span>
+  </div>
+  <div class="form-group">
+    <label for="lastName">Email:</label>
+    <input type="email" class="form-control" id="email" [(ngModel)]="newEmployee.email" name="email" required
+      aria-describedby="emailError">
+    <span id="email" class="error" *ngIf="!newEmployee.email">This field is required</span>
+  </div>
+  <div class="form-group">
+    <label for="tz">TZ:</label>
+    <input type="text" id="tz" [(ngModel)]="newEmployee.tz" name="tz" required pattern="[0-9]{9}">
+    <span id="tzError" class="error" *ngIf="!newEmployee.tz || newEmployee.tz.length !== 9 || !isValidIdNumber(newEmployee.tz)">Please enter a valid ID number (9 digits)</span>
+  </div>
+  <div class="form-group">
+    <label for="birthDate">Date of Birth:</label>
+    <input type="date" class="form-control" id="birthDate" [(ngModel)]="newEmployee.birthDate" name="birthDate" required
+      aria-describedby="birthDateError">
+    <span id="birthDateError" class="error" *ngIf="!newEmployee.birthDate">This field is required</span>
+  </div>
+  <div class="form-group">
+    <label for="startDate">Start of Work Date:</label>
+    <input type="date" class="form-control" id="startDate" [(ngModel)]="newEmployee.startDate " name="startDate"
+      required aria-describedby="startDateError">
+    <span id="startDateError" class="error" *ngIf="!newEmployee.startDate">This field is required</span>
+  </div>
+
+  
+  
+  <div class="form-group">
+    <label for="gender">Gender:</label>
+    <select id="gender" [(ngModel)]="newEmployee.gender" name="gender"  required >
+      <option [ngValue]="true">Male</option>
+      <option [ngValue]="false">Female</option>
+    </select>
+  </div>
+
+
+  <div class="form-group">
+    <label for="role">Role:</label>
+    <select id="role" class="form-control" [(ngModel)]="selectedRole" name="role"
+      (ngModelChange)="openRolePrompt($event)">
+      <option *ngFor="let role of roles" [value]="role.id">{{ role.name }}</option>
+    </select>
+  </div>
+  <div *ngFor="let selectedRole of selectedRoles" class="form-group">
+    <div>Selected Role: {{ selectedRole.name }}</div>
+    <div>Managerial: {{ emRole.managerial }}</div>
+    <div>Role Start Date: {{ emRole.roleStartDate  }}</div>
+  </div>
+
+  <button class="btn btn-primary" (click)="addEmployee()" [disabled]="!isFormValid()">Add Employee</button>
+
+</div>

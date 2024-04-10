@@ -1,0 +1,30 @@
+/* CSS עבור בהירות המלל בטבלה */
+.table-row:hover {
+background-color: rgb(144, 143, 143);
+}
+
+/* CSS עבור המצביע */
+.text-primary ,.text-danger{
+  cursor: pointer;
+}
+
+h1{
+  color: black;
+}
+
+#print{
+  background-color: rgb(210, 48, 67);
+  border: none;
+}
+.image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 150px; /* ניתן לשנות את הגובה כפי שרוצים */
+}
+
+.image {
+  max-width: 100%;
+  max-height: 100%;
+}
+

@@ -1,0 +1,72 @@
+<div class="edit-employee">
+  <h2>Edit Employee Details</h2>
+  <div class="form-group">
+    <label for="firstName">First Name:</label>
+    <input type="text" id="firstName" [(ngModel)]="editedEmployee.firstName" name="firstName" required>
+    <span id="firstNameError" class="error" *ngIf="!editedEmployee.firstName">This field is required</span>
+  </div>
+  <div class="form-group">
+    <label for="lastName">Last Name:</label>
+    <input type="text" id="lastName" [(ngModel)]="editedEmployee.lastName" name="lastName" required>
+    <span id="lastNameError" class="error" *ngIf="!editedEmployee.lastName">This field is required</span>
+  </div>
+  <div class="form-group">
+    <label for="tz">Email:</label>
+    <input type="email" id="email" [(ngModel)]="editedEmployee.email" name="email" required>
+    <span id="emailError" class="error" *ngIf="!editedEmployee.email  ">Please enter a valid email (include
+      "&#64;")</span>
+  </div>
+  <div class="form-group">
+    <label for="tz">TZ:</label>
+    <input type="text" id="tz" [(ngModel)]="editedEmployee.tz" name="tz" required pattern="[0-9]{9}">
+    <span id="tzError" class="error"
+      *ngIf="!editedEmployee.tz || editedEmployee.tz.length !== 9 || !isValidIdNumber(editedEmployee.tz)">Please enter a
+      valid ID number (9 digits)</span>
+  </div>
+  <div class="form-group">
+    <label for="birthDate">Date of Birth:</label>
+    <input type="date" id="birthDate" [ngModel]="editedEmployee.birthDate| date:'yyyy-MM-dd'"
+      (ngModelChange)="editedEmployee.birthDate=$event" name="birthDate">
+    <span id="birthDateError" class="error" *ngIf="!editedEmployee.birthDate">This field is required</span>
+  </div>
+  <div class="form-group">
+    <label for="startOfWorkDate">Start of Work Date:</label>
+    <input type="date" id="startOfWorkDate" [ngModel]="editedEmployee.startDate | date:'yyyy-MM-dd'"
+      (ngModelChange)="editedEmployee.startDate=$event" name="startOfWorkDate">
+    <span id="startOfWorkDateError" class="error" *ngIf="!editedEmployee.startDate">This field is required</span>
+  </div>
+  <div class="form-group">
+    <label for="gender">Gender:</label>
+    <select id="gender" [(ngModel)]="editedEmployee.gender" name="gender" required>
+      <option [ngValue]="true">Male</option>
+      <option [ngValue]="false">Female</option>
+    </select>
+
+
+
+    <div class="form-group">
+      <label for="role">add new role:</label>
+      <select id="role" class="form-control" [(ngModel)]="selectedRole" name="role"
+        (ngModelChange)="openRolePrompt($event)">
+        <option *ngFor="let role of roles" [value]="role.id">{{ role.name }} {{ role.id }}</option>
+      </select>
+    </div>
+
+    <div id="ExistRole">
+      <div *ngFor="let selectedRole of editedEmployee.roles; let i = index" class="form-group" id="boxes">
+        <div>Role: {{editedEmployee.roles[i].roleId}}</div>
+        <div>Managerial:
+          <input type="checkbox" [(ngModel)]="editedEmployee.roles[i].managerial" 
+           >
+        </div>
+        <div>Role Start Date: {{ editedEmployee.roles[i].roleStartDate | date:'yyyy-MM-dd' }}
+          <input type="date" [(ngModel)]="editedEmployee.roles[i].roleStartDate" 
+            >
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+  <button class="btn btn-primary" (click)="saveChanges()">Save Changes</button>
+</div>

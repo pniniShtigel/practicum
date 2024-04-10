@@ -1,0 +1,62 @@
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+<div class="image-container">
+  <h1>EMPLOYEES</h1>
+</div>
+
+
+<div class="container mt-3">
+  <div class="row">
+    <div class="col-md-6">
+      <input id="select" type="text" class="form-control" [(ngModel)]="searchTerm" (input)="filterEmployees()"
+        placeholder="🔍 Search employees">
+    </div>
+
+    <div class="col-md-6 d-flex justify-content-end">
+ 
+      <button id="print" (click)="printEmployee()" class="btn btn-primary mr-2" title="print">
+        <span class="material-icons">print</span> 
+      </button>
+      <button id="export" (click)="exportToExcel()" class="btn btn-primary mr-2" title="Export to Excel"id="export">
+        <span class="material-icons">get_app</span> 
+      </button>
+      
+      <button id="add-employee-btn" (click)="toggleAddEmployeeComponent()" class="btn btn-success" title="Add Employee">
+        <span class="material-icons">add</span> 
+      </button>
+      
+    </div>
+  </div>
+</div>
+
+<div class="container mt-3">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>ID</th>
+        <th>Start Date</th>
+        <th>Delete</th>
+        <th>Update</th>
+        <th>send email</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let employee of filteredEmployees" class="table-row" (mouseenter)="onHover($event)"
+        (mouseleave)="onLeave($event)">
+        <td>{{ employee.firstName }}</td>
+        <td>{{ employee.lastName }}</td>
+        <td>{{ employee.tz }}</td>
+        <td>{{ employee.startDate | date:'yyyy-MM-dd'}}</td>
+        <td (click)="deleteEmployee($event, employee)" class="text-danger"><span
+            class="material-icons">delete_outline</span></td>
+        <td (click)="editEmployee($event, employee.id)" class="text-primary"><span class="material-icons">edit</span>
+        </td>
+        <td  (click)="sendEmail( $event,employee)" class="text-success"><span class="material-icons">email</span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
